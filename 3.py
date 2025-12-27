@@ -48,4 +48,8 @@ show_img(masked_result)
 
 # 7) размытие
 denoised = cv2.GaussianBlur(masked_result, (15, 15), 0)
+
+# 8) вывод
 show_img(denoised)
+
+

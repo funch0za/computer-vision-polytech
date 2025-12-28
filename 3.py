@@ -34,11 +34,18 @@ img_sharpened = cv2.filter2D(img_hsv, -1, kernel)
 show_img(img_sharpened)
 
 # 4) диапазон HSV для зеленого
-lower_green = np.array([40, 40, 40])
-upper_green = np.array([80, 255, 255])
+lower_green = np.array([35, 50, 50]) # светлый зеленый
+upper_green = np.array([85, 255, 255]) # темный зеленый
+
+# другие похожие оттенки
+lower_other = np.array([25, 30, 30])
+upper_other = np.array([35, 255, 255])
 
 # 5) создание маски
-mask = cv2.inRange(img_sharpened, lower_green, upper_green)
+mask_green = cv2.inRange(img_sharpened, lower_green, upper_green)
+mask_other = cv2.inRange(img_sharpened, lower_other, upper_other)
+mask = cv2.bitwise_or(mask_green, mask_other)
+
 show_img(mask)
 
 # 6) применение маски
@@ -47,7 +54,7 @@ masked_result = cv2.bitwise_and(img_bgr_sharpened, img_bgr_sharpened, mask=mask)
 show_img(masked_result)
 
 # 7) размытие
-denoised = cv2.GaussianBlur(masked_result, (15, 15), 0)
+denoised = cv2.GaussianBlur(masked_result, (5, 5), 0)
 
 # 8) вывод
 show_img(denoised)

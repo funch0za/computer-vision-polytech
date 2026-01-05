@@ -1,3 +1,8 @@
+"""
+Задание #4
+сделать сегментацию на основе суперпиксельной сегментации на основе SLIC, SEEDS, LSC
+"""
+
 import cv2
 import numpy as np
 
@@ -82,9 +87,6 @@ def main():
     elif choice == "2":
         labels, mask = lsc_segmentation(image)
         display_results(image, labels, mask, "LSC")
-
-    else:
-        print("Неверный выбор")
 
 
 main()

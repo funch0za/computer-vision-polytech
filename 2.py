@@ -6,10 +6,12 @@
 import cv2
 import numpy as np
 
+
 def show_img(img):
     cv2.imshow("cat", img)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+
 
 img = cv2.imread("cat2.png")
 show_img(img)
@@ -29,7 +31,7 @@ show_img(img)
 # темные области становятся более темными
 norm = img.astype(np.float32) / 255.0
 dark = np.power(norm, 1.3)
-img = np.uint8(255 * dark) # denorm
+img = np.uint8(255 * dark)  # denorm
 show_img(img)
 
 

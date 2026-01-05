@@ -8,6 +8,10 @@ import numpy as np
 
 
 def seeds_segmentation(image, n_segments=100):
+    """
+    Energy-Driven Sampling (SEEDS) оптимизирует энергию на основе гистограмм цвета и границ, начиная с иерархической сетки блоков и уточняя границы от крупных к мелким. Это быстрый алгоритм реального времени с параметрами num_superpixels, num_levels и histogram_bins; в OpenCV — cv.ximgproc.createSuperpixelSEEDS.
+    """
+
     h, w = image.shape[:2]
 
     seeds = cv2.ximgproc.createSuperpixelSEEDS(
@@ -38,6 +42,9 @@ def seeds_segmentation(image, n_segments=100):
 
 
 def lsc_segmentation(image, n_segments=100):
+    """
+    Linear Spectral Clustering (LSC) применяет спектральное кластерирование в 10-мерном взвешенном пространстве (цвет + позиция), семплируя K семян и минимизируя Normalized Cuts. Обеспечивает равномерные суперпики; в OpenCV — cv.ximgproc.createSuperpixelLSC с region_size и ratio
+    """
     h, w = image.shape[:2]
 
     # вычисление среднего размера суперпикселя
